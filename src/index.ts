@@ -4,6 +4,9 @@ import cors from "cors";
 
 import clientRoutes from "./routes/clientRoutes";
 import phoneRoutes from "./routes/phoneRoutes";
+import rechargeRoutes from "./routes/rechargeRoutes";
+import summaryRoutes from "./routes/summaryRoutes";
+
 import { errorHandler } from "./middlewares/errorHandler";
 
 dotenv.config();
@@ -12,12 +15,14 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-app.use(clientRoutes);
-app.use(phoneRoutes);
-
 app.get("/", (req, res) => {
   res.send("✅ API de Recarga está online!");
 });
+
+app.use(clientRoutes);
+app.use(phoneRoutes);
+app.use(rechargeRoutes);
+app.use(summaryRoutes);
 
 app.use(errorHandler);
 

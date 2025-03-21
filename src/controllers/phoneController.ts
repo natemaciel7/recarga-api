@@ -31,7 +31,7 @@ export async function getPhonesByClient(
   try {
     const { document } = req.params;
     const phones = await getPhonesByClientService(document);
-    res.json(phones);
+    res.status(200).json(phones);
   } catch (error) {
     next(error);
   }

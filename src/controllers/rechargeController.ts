@@ -10,10 +10,8 @@ export async function rechargePhone(
   next: NextFunction
 ): Promise<void> {
   try {
-    const recharge = await rechargePhoneService(
-      req.body.number,
-      req.body.amount
-    );
+    const { number, amount } = req.body;
+    const recharge = await rechargePhoneService(number, amount);
     res.status(201).json(recharge);
   } catch (error) {
     next(error);
@@ -26,8 +24,9 @@ export async function getRechargesByNumber(
   next: NextFunction
 ): Promise<void> {
   try {
-    const recharges = await getRechargesByNumberService(req.params.number);
-    res.json(recharges);
+    const number = req.params.number;
+    const recharges = await getRechargesByNumberService(number);
+    res.status(200).json(recharges);
   } catch (error) {
     next(error);
   }

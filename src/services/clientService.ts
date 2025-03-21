@@ -10,8 +10,7 @@ export async function registerClientService(
 ): Promise<Client> {
   const existingClient = await findClientByDocument(document);
   if (existingClient) {
-    throw new Error("CPF já cadastrado.");
+    throw new Error("Cliente já cadastrado.");
   }
-
   return await createClient(document, name);
 }

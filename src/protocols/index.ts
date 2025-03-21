@@ -1,9 +1,3 @@
-export interface Carrier {
-  id: number;
-  name: string;
-  code: number;
-}
-
 export interface Client {
   id: number;
   document: string;
@@ -16,6 +10,12 @@ export interface Phone {
   carrier_id: number;
   client_id: number;
   description: string;
+}
+
+export interface Carrier {
+  id: number;
+  name: string;
+  code: number;
 }
 
 export interface Recharge {

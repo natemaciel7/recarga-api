@@ -17,10 +17,10 @@ export async function registerPhoneService(
 
   const existingPhones = await findPhonesByClient(client.id);
   if (existingPhones.length >= 3)
-    throw new Error("Limite de números excedido.");
+    throw new Error("Limite de 3 telefones atingido.");
 
   const phoneExists = await findPhoneByNumber(number);
-  if (phoneExists) throw new Error("Número já cadastrado.");
+  if (phoneExists) throw new Error("Telefone já cadastrado.");
 
   return await createPhone(number, carrier_id, client.id, description);
 }
