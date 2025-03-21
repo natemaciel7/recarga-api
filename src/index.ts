@@ -4,9 +4,6 @@ import cors from "cors";
 
 import clientRoutes from "./routes/clientRoutes";
 import phoneRoutes from "./routes/phoneRoutes";
-import rechargeRoutes from "./routes/rechargeRoutes";
-import summaryRoutes from "./routes/summaryRoutes";
-
 import { errorHandler } from "./middlewares/errorHandler";
 
 dotenv.config();
@@ -17,8 +14,6 @@ app.use(express.json());
 
 app.use(clientRoutes);
 app.use(phoneRoutes);
-app.use(rechargeRoutes);
-app.use(summaryRoutes);
 
 app.use(errorHandler);
 

@@ -7,7 +7,8 @@ export async function registerClient(
   next: NextFunction
 ): Promise<void> {
   try {
-    const client = await registerClientService(req.body.document);
+    const { document, name } = req.body;
+    const client = await registerClientService(document, name);
     res.status(201).json(client);
   } catch (error) {
     next(error);

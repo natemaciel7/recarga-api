@@ -13,19 +13,14 @@ export async function registerPhoneService(
   description: string
 ): Promise<Phone> {
   const client = await findClientByDocument(document);
-  if (!client) {
-    throw new Error("Cliente não encontrado.");
-  }
+  if (!client) throw new Error("Cliente não encontrado.");
 
   const existingPhones = await findPhonesByClient(client.id);
-  if (existingPhones.length >= 3) {
-    throw new Error("Cliente já possui 3 números cadastrados.");
-  }
+  if (existingPhones.length >= 3)
+    throw new Error("Limite de números excedido.");
 
-  const existingPhone = await findPhoneByNumber(number);
-  if (existingPhone) {
-    throw new Error("Número já cadastrado.");
-  }
+  const phoneExists = await findPhoneByNumber(number);
+  if (phoneExists) throw new Error("Número já cadastrado.");
 
   return await createPhone(number, carrier_id, client.id, description);
 }
@@ -34,9 +29,6 @@ export async function getPhonesByClientService(
   document: string
 ): Promise<Phone[]> {
   const client = await findClientByDocument(document);
-  if (!client) {
-    throw new Error("Cliente não encontrado.");
-  }
-
+  if (!client) throw new Error("Cliente não encontrado.");
   return await findPhonesByClient(client.id);
 }

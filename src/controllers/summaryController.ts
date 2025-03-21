@@ -7,7 +7,8 @@ export async function getSummary(
   next: NextFunction
 ): Promise<void> {
   try {
-    const summary = await getSummaryService(req.params.document);
+    const document = req.params.document;
+    const summary = await getSummaryService(document);
     res.json(summary);
   } catch (error) {
     next(error);

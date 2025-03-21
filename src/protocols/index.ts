@@ -7,6 +7,7 @@ export interface Carrier {
 export interface Client {
   id: number;
   document: string;
+  name: string;
 }
 
 export interface Phone {

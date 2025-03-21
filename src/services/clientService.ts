@@ -4,15 +4,14 @@ import {
   findClientByDocument,
 } from "../repositories/clientRepository";
 
-export async function registerClientService(document: string): Promise<Client> {
-  if (document.length !== 11 || !/^\d+$/.test(document)) {
-    throw new Error("O CPF deve ter exatamente 11 dígitos numéricos.");
-  }
-
+export async function registerClientService(
+  document: string,
+  name: string
+): Promise<Client> {
   const existingClient = await findClientByDocument(document);
   if (existingClient) {
     throw new Error("CPF já cadastrado.");
   }
 
-  return await createClient(document);
+  return await createClient(document, name);
 }

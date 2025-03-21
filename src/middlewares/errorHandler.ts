@@ -6,6 +6,6 @@ export function errorHandler(
   res: Response,
   next: NextFunction
 ): void {
-  console.error("Erro interno:", err.message);
-  res.status(500).json({ error: err.message || "Erro interno do servidor." });
+  console.error("Erro:", err.message);
+  res.status(500).json({ error: err.message });
 }

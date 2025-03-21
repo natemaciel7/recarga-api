@@ -11,7 +11,8 @@ INSERT INTO carriers (name, code) VALUES ('Claro', 21);
 
 CREATE TABLE clients (
   id SERIAL PRIMARY KEY,
-  document VARCHAR(11) NOT NULL UNIQUE
+  document VARCHAR(11) NOT NULL UNIQUE,
+  name VARCHAR(255) NOT NULL
 );
 
 CREATE TABLE phones (

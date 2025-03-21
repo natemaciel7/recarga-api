@@ -7,7 +7,7 @@ export async function createPhone(
   client_id: number,
   description: string
 ): Promise<Phone> {
-  const result = await pool.query(
+  const result = await pool.query<Phone>(
     "INSERT INTO phones (number, carrier_id, client_id, description) VALUES ($1, $2, $3, $4) RETURNING *",
     [number, carrier_id, client_id, description]
   );
@@ -15,15 +15,17 @@ export async function createPhone(
 }
 
 export async function findPhonesByClient(client_id: number): Promise<Phone[]> {
-  const result = await pool.query("SELECT * FROM phones WHERE client_id = $1", [
-    client_id,
-  ]);
+  const result = await pool.query<Phone>(
+    "SELECT * FROM phones WHERE client_id = $1",
+    [client_id]
+  );
   return result.rows;
 }
 
 export async function findPhoneByNumber(number: string): Promise<Phone | null> {
-  const result = await pool.query("SELECT * FROM phones WHERE number = $1", [
-    number,
-  ]);
+  const result = await pool.query<Phone>(
+    "SELECT * FROM phones WHERE number = $1",
+    [number]
+  );
   return result.rows[0] || null;
 }

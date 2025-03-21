@@ -10,11 +10,12 @@ export async function registerPhone(
   next: NextFunction
 ): Promise<void> {
   try {
+    const { number, carrier_id, document, description } = req.body;
     const phone = await registerPhoneService(
-      req.body.number,
-      req.body.carrier_id,
-      req.body.document,
-      req.body.description
+      number,
+      carrier_id,
+      document,
+      description
     );
     res.status(201).json(phone);
   } catch (error) {
@@ -28,7 +29,8 @@ export async function getPhonesByClient(
   next: NextFunction
 ): Promise<void> {
   try {
-    const phones = await getPhonesByClientService(req.params.document);
+    const { document } = req.params;
+    const phones = await getPhonesByClientService(document);
     res.json(phones);
   } catch (error) {
     next(error);
