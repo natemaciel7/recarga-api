@@ -15,6 +15,10 @@ app.use(express.json());
 app.use(clientRoutes);
 app.use(phoneRoutes);
 
+app.get("/", (req, res) => {
+  res.send("✅ API de Recarga está online!");
+});
+
 app.use(errorHandler);
 
 const PORT = process.env.PORT || 3000;
